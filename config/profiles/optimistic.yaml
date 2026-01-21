@@ -1,0 +1,24 @@
+# Optimistic usage profile with best-case assumptions
+name: optimistic
+description: Best-case assumptions for minimum cost estimation
+
+# Query type distribution (must sum to 1.0)
+query_distribution:
+  visual: 0.1    # 10% visual queries
+  code: 0.2      # 20% code generation
+  research: 0.7  # 70% research (typically lower cost)
+
+# Complexity distribution (must sum to 1.0)
+complexity_distribution:
+  simple: 0.7    # 70% simple queries
+  medium: 0.25   # 25% medium complexity
+  complex: 0.05  # 5% complex queries (minimal delegation)
+
+# Routing accuracy (0.0-1.0)
+routing_accuracy: 0.95  # 95% routing accuracy (minimal misrouting)
+
+# Delegation accuracy (0.0-1.0)
+delegation_accuracy: 0.95  # 95% delegation success
+
+# Daily query volume
+queries_per_day: 800  # Lower volume

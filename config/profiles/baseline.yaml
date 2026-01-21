@@ -1,0 +1,24 @@
+# Baseline usage profile with expected usage patterns
+name: baseline
+description: Expected usage patterns based on typical workload
+
+# Query type distribution (must sum to 1.0)
+query_distribution:
+  visual: 0.2    # 20% visual queries (images, diagrams)
+  code: 0.3      # 30% code generation/review
+  research: 0.5  # 50% research and analysis
+
+# Complexity distribution (must sum to 1.0)
+complexity_distribution:
+  simple: 0.6    # 60% simple queries
+  medium: 0.3    # 30% medium complexity
+  complex: 0.1   # 10% complex queries requiring delegation
+
+# Routing accuracy (0.0-1.0)
+routing_accuracy: 0.85  # 85% queries routed to correct model
+
+# Delegation accuracy (0.0-1.0)
+delegation_accuracy: 0.90  # 90% delegations successful
+
+# Daily query volume
+queries_per_day: 1000
