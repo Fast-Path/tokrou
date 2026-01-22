@@ -1,0 +1,20 @@
+{
+  "models": {
+    "gemini": {
+      "input": 0.000001,
+      "output": 0.000003
+    },
+    "coder": {
+      "input": 0.0000006,
+      "output": 0.0000006
+    },
+    "grok": {
+      "input": 0.000005,
+      "output": 0.000015
+    },
+    "classifier": {
+      "input": 0.0000001,
+      "output": 0.0000001
+    }
+  }
+}

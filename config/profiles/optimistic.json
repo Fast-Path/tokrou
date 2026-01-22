@@ -1,0 +1,17 @@
+{
+  "name": "optimistic",
+  "description": "Best-case assumptions for minimum cost estimation",
+  "query_distribution": {
+    "visual": 0.1,
+    "code": 0.2,
+    "research": 0.7
+  },
+  "complexity_distribution": {
+    "simple": 0.7,
+    "medium": 0.25,
+    "complex": 0.05
+  },
+  "routing_accuracy": 0.95,
+  "delegation_accuracy": 0.95,
+  "queries_per_day": 800
+}

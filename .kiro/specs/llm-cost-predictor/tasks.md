@@ -29,13 +29,20 @@ This implementation plan breaks down the Multi-Model LLM Cost Predictor into dis
   - **Validates: Requirements 1.1, 1.2, 1.3, 1.4, 1.5**
 
 - [x] 3. Create configuration templates
-  - Write config/profiles/conservative.yaml with pessimistic assumptions
-  - Write config/profiles/baseline.yaml with expected usage patterns
-  - Write config/profiles/optimistic.yaml with best-case assumptions
-  - Write config/pricing.yaml with current model pricing
-  - Write config/token_estimation.yaml with token estimation rules
-  - Write config/simulation.yaml with simulation parameters
+  - Write config/profiles/conservative.json with pessimistic assumptions
+  - Write config/profiles/baseline.json with expected usage patterns
+  - Write config/profiles/optimistic.json with best-case assumptions
+  - Write config/pricing.json with current model pricing
+  - Write config/token_estimation.json with token estimation rules
+  - Write config/simulation.json with simulation parameters
   - _Requirements: 17.1, 17.2, 17.3, 17.4, 17.5_
+
+- [x] 3.1 Implement log parser for Jarvis usage logs
+  - Create backend/core/log_parser.py with UsageLogEntry dataclass
+  - Implement parse_concatenated_json to handle concatenated JSON objects
+  - Support JSONL and JSON array formats
+  - Implement load_usage_logs to parse log files into typed entries
+  - Handle all fields: session_id, tokens, costs, latency, delegation_chain, etc.
 
 - [x] 4. Implement TokenEstimator
   - Create TokenEstimator class with configuration loading
@@ -131,7 +138,7 @@ This implementation plan breaks down the Multi-Model LLM Cost Predictor into dis
 - [ ] 9. Implement ProfileManager
   - Create ProfileManager class with profiles directory path
   - Implement list_profiles method
-  - Implement load_profile method with YAML parsing
+  - Implement load_profile method with JSON parsing
   - Implement save_profile method with validation and overwrite protection
   - Implement delete_profile method with built-in profile protection
   - Implement profile_exists and is_built_in helper methods
