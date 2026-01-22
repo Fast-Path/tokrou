@@ -7,7 +7,7 @@ The Multi-Model LLM Cost Predictor is a cost analysis system for predicting oper
 The architecture follows a strict separation of concerns:
 - **Core logic** (`backend/core/`): Pure Python calculation engine with no I/O dependencies
 - **CLI interface** (`backend/cli/`): Command-line wrapper using Click
-- **API layer** (`backend/api/`): Flask REST API for web consumption
+- **API layer** (`backend/api/`): FastAPI REST API for web consumption
 - **Web interface** (`frontend/`): React-based interactive dashboard
 
 All parameters (pricing, token estimates, usage patterns) are externalized in YAML configuration files, enabling scenario testing without code changes.
@@ -25,14 +25,14 @@ The project uses `uv` for fast, reliable Python package management:
 uv init
 
 # Add dependencies
-uv add flask numpy pyyaml click hypothesis pytest pytest-cov
+uv add fastapi uvicorn numpy click hypothesis pytest pytest-cov
 
 # Add dev dependencies
 uv add --dev black ruff mypy
 
 # Run commands
 uv run python -m backend.cli.main simulate --profile baseline
-uv run flask --app backend.api.app run
+uv run uvicorn backend.api.app:app --reload
 uv run pytest tests/
 ```
 
@@ -54,7 +54,7 @@ uv run pytest tests/
 └────────────────────────┬────────────────────────────────────┘
                          │ HTTP/JSON
 ┌────────────────────────▼────────────────────────────────────┐
-│                      Flask API Layer                        │
+│                      FastAPI Layer                          │
 │  POST /api/simulate  │  POST /api/sensitivity               │
 │  GET /api/profiles   │  POST /api/profiles                  │
 │  DELETE /api/profiles/<name>                                │
@@ -107,7 +107,7 @@ cost-predictor/
 │   │
 │   ├── api/
 │   │   ├── __init__.py
-│   │   ├── app.py                # Flask app
+│   │   ├── app.py                # FastAPI app
 │   │   └── routes.py             # API endpoints
 │   │
 │   └── cli/
@@ -157,7 +157,7 @@ cost-predictor/
 
 ### Technology Stack
 
-- **Backend**: Python 3.10+, Flask, NumPy, PyYAML, Click
+- **Backend**: Python 3.10+, FastAPI, Uvicorn, NumPy, Click
 - **Package Manager**: uv for Python dependency management
 - **Frontend**: React 18+, functional components with hooks
 - **Testing**: pytest for unit/integration tests, property-based testing for core logic

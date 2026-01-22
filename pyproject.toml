@@ -5,7 +5,8 @@ description = "Multi-Model LLM Cost Predictor - Monte Carlo simulation for predi
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
-    "flask>=3.0.0",
+    "fastapi>=0.115.0",
+    "uvicorn>=0.32.0",
     "numpy>=1.24.0",
     "click>=8.1.0",
 ]

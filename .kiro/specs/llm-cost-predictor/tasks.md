@@ -194,8 +194,8 @@ This implementation plan breaks down the Multi-Model LLM Cost Predictor into dis
   - Run CLI create-profile and delete-profile commands
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 13. Implement Flask API
-  - Create Flask app in api/app.py with CORS configuration
+- [ ] 13. Implement FastAPI
+  - Create FastAPI app in api/app.py with CORS configuration
   - Implement POST /api/simulate endpoint with request validation
   - Implement POST /api/sensitivity endpoint
   - Implement GET /api/profiles endpoint
@@ -335,7 +335,7 @@ This implementation plan breaks down the Multi-Model LLM Cost Predictor into dis
 
 - [ ] 22. Create Makefile for common tasks
   - Add run-cli target for CLI execution
-  - Add run-web target for Flask server
+  - Add run-web target for FastAPI server (uvicorn)
   - Add run-frontend target for React dev server
   - Add test target for running all tests
   - Add validate target for running validation script

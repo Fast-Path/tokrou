@@ -42,7 +42,7 @@ uv sync --extra dev
 cost-predictor/
 ├── backend/
 │   ├── core/          # Core calculation engine
-│   ├── api/           # Flask REST API
+│   ├── api/           # FastAPI REST API
 │   └── cli/           # Command-line interface
 ├── config/
 │   ├── profiles/      # Usage profile configurations

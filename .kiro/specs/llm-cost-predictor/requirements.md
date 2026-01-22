@@ -8,7 +8,7 @@ This document specifies the requirements for a Multi-Model LLM Cost Predictor sy
 
 - **System**: The Multi-Model LLM Cost Predictor application
 - **CLI**: Command-line interface for running simulations and generating reports
-- **Web_Interface**: React-based frontend with Flask backend for interactive exploration
+- **Web_Interface**: React-based frontend with FastAPI backend for interactive exploration
 - **Cost_Model**: Core calculation logic for predicting query costs
 - **Monte_Carlo_Simulation**: Statistical method using repeated random sampling to predict cost distributions
 - **Profile**: Configuration defining query distributions, complexity, routing accuracy, and volume
@@ -128,7 +128,7 @@ This document specifies the requirements for a Multi-Model LLM Cost Predictor sy
 8. WHEN configuration is invalid, THE CLI SHALL display descriptive error messages
 9. THE CLI SHALL support --output flag to write results to a file
 
-### Requirement 8: Flask API
+### Requirement 8: FastAPI
 
 **User Story:** As a frontend developer, I want REST API endpoints for simulations and configuration, so that I can build interactive web interfaces.
 

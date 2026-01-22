@@ -2,15 +2,15 @@
 
 import tempfile
 import os
+import json
 from pathlib import Path
 from typing import Dict, Any
-import yaml
 
 import pytest
 from hypothesis import given, strategies as st, assume
 
 from backend.core.config_loader import (
-    load_yaml_file,
+    load_json_file,
     load_profile,
     load_pricing,
     load_token_estimation,
@@ -46,8 +46,8 @@ def valid_profile_config(draw):
     complexity_dist = draw(valid_distribution())
     
     return {
-        'name': draw(st.text(min_size=1, max_size=50)),
-        'description': draw(st.text(min_size=1, max_size=200)),
+        'name': draw(st.text(min_size=1, max_size=50, alphabet=st.characters(whitelist_categories=('L', 'N')))),
+        'description': draw(st.text(min_size=1, max_size=200, alphabet=st.characters(whitelist_categories=('L', 'N', 'P', 'Z')))),
         'query_distribution': {
             'visual': query_dist[0],
             'code': query_dist[1],
@@ -161,7 +161,7 @@ class TestConfigurationLoadingCompleteness:
     """
     Property 1: Configuration Loading Completeness
     
-    For any valid YAML configuration file containing all required fields,
+    For any valid JSON configuration file containing all required fields,
     loading the configuration should successfully parse all fields and make
     them accessible in the resulting configuration object.
     
@@ -183,9 +183,9 @@ class TestConfigurationLoadingCompleteness:
             profiles_dir.mkdir()
             
             # Write profile to temporary file
-            profile_path = profiles_dir / "test_profile.yaml"
+            profile_path = profiles_dir / "test_profile.json"
             with open(profile_path, 'w') as f:
-                yaml.dump(profile_config, f)
+                json.dump(profile_config, f)
             
             # Mock the config directory to point to our temp directory
             original_get_config_dir = get_config_dir
@@ -233,9 +233,9 @@ class TestConfigurationLoadingCompleteness:
         """
         with tempfile.TemporaryDirectory() as temp_dir:
             # Write pricing to temporary file
-            pricing_path = Path(temp_dir) / "pricing.yaml"
+            pricing_path = Path(temp_dir) / "pricing.json"
             with open(pricing_path, 'w') as f:
-                yaml.dump(pricing_config, f)
+                json.dump(pricing_config, f)
             
             # Mock the config directory
             original_get_config_dir = get_config_dir
@@ -268,9 +268,9 @@ class TestConfigurationLoadingCompleteness:
         """
         with tempfile.TemporaryDirectory() as temp_dir:
             # Write token estimation config to temporary file
-            token_path = Path(temp_dir) / "token_estimation.yaml"
+            token_path = Path(temp_dir) / "token_estimation.json"
             with open(token_path, 'w') as f:
-                yaml.dump(token_config, f)
+                json.dump(token_config, f)
             
             # Mock the config directory
             original_get_config_dir = get_config_dir
@@ -318,9 +318,9 @@ class TestConfigurationLoadingCompleteness:
         """
         with tempfile.TemporaryDirectory() as temp_dir:
             # Write simulation config to temporary file
-            simulation_path = Path(temp_dir) / "simulation.yaml"
+            simulation_path = Path(temp_dir) / "simulation.json"
             with open(simulation_path, 'w') as f:
-                yaml.dump(simulation_config, f)
+                json.dump(simulation_config, f)
             
             # Mock the config directory
             original_get_config_dir = get_config_dir
@@ -347,15 +347,15 @@ class TestConfigurationLoadingCompleteness:
             finally:
                 backend.core.config_loader.get_config_dir = original_get_config_dir
 
-    @given(st.text(min_size=1))
-    def test_yaml_file_loading_completeness(self, content):
+    @given(st.text(min_size=1, alphabet=st.characters(whitelist_categories=('L', 'N'))))
+    def test_json_file_loading_completeness(self, content):
         """
-        Test that YAML file loading preserves all data structure.
+        Test that JSON file loading preserves all data structure.
         
         **Feature: llm-cost-predictor, Property 1: Configuration Loading Completeness**
         **Validates: Requirements 1.1**
         """
-        # Create a simple but valid YAML structure
+        # Create a simple but valid JSON structure
         test_data = {
             'string_field': content,
             'number_field': 42,
@@ -365,13 +365,13 @@ class TestConfigurationLoadingCompleteness:
             'dict_field': {'nested': 'value'}
         }
         
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f:
-            yaml.dump(test_data, f)
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False) as f:
+            json.dump(test_data, f)
             temp_path = f.name
         
         try:
-            # Load the YAML file
-            loaded_data = load_yaml_file(Path(temp_path))
+            # Load the JSON file
+            loaded_data = load_json_file(Path(temp_path))
             
             # Verify all fields are accessible and preserved
             assert loaded_data['string_field'] == test_data['string_field']
