@@ -1,0 +1,17 @@
+{
+  "correct_routes": {
+    "visual": "gemini",
+    "code": "coder",
+    "research": "grok"
+  },
+  "fallback_chains": {
+    "gemini": ["coder", "grok"],
+    "coder": ["grok", "gemini"],
+    "grok": ["coder", "gemini"]
+  },
+  "delegation_targets": {
+    "gemini": ["coder"],
+    "coder": ["grok"],
+    "grok": ["coder"]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "models": {
+    "classifier": {
+      "input_price_per_1k": 0.0001,
+      "output_price_per_1k": 0.0002,
+      "cached_input_price_per_1k": 0.00005,
+      "latency_ms_avg": 100,
+      "availability_rate": 0.999
+    },
+    "gemini": {
+      "input_price_per_1k": 0.001,
+      "output_price_per_1k": 0.002,
+      "cached_input_price_per_1k": 0.0005,
+      "latency_ms_avg": 500,
+      "availability_rate": 0.998
+    },
+    "coder": {
+      "input_price_per_1k": 0.003,
+      "output_price_per_1k": 0.015,
+      "cached_input_price_per_1k": 0.0015,
+      "latency_ms_avg": 800,
+      "availability_rate": 0.997
+    },
+    "grok": {
+      "input_price_per_1k": 0.002,
+      "output_price_per_1k": 0.006,
+      "cached_input_price_per_1k": 0.001,
+      "latency_ms_avg": 600,
+      "availability_rate": 0.998
+    }
+  }
+}

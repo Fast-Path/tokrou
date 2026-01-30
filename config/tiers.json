@@ -1,0 +1,22 @@
+{
+  "tiers": {
+    "free": {
+      "daily_query_limit": 50,
+      "allowed_complexity": ["simple", "moderate"],
+      "subscription_fee_monthly": 0,
+      "growth_rate_monthly": 0.1
+    },
+    "paid": {
+      "daily_query_limit": 500,
+      "allowed_complexity": ["simple", "moderate", "complex"],
+      "subscription_fee_monthly": 20,
+      "growth_rate_monthly": 0.05
+    },
+    "enterprise": {
+      "daily_query_limit": null,
+      "allowed_complexity": ["simple", "moderate", "complex"],
+      "subscription_fee_monthly": 200,
+      "growth_rate_monthly": 0.02
+    }
+  }
+}

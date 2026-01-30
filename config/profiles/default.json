@@ -1,0 +1,28 @@
+{
+  "name": "default",
+  "daily_volume": 10000,
+  "query_mix": {
+    "visual": 0.2,
+    "code": 0.5,
+    "research": 0.3
+  },
+  "complexity_distribution": {
+    "simple": 0.6,
+    "moderate": 0.3,
+    "complex": 0.1
+  },
+  "routing_accuracy": 0.95,
+  "delegation_probability": 0.15,
+  "cache_hit_rate": 0.2,
+  "error_rate": 0.01,
+  "tier_distribution": {
+    "free": 0.7,
+    "paid": 0.25,
+    "enterprise": 0.05
+  },
+  "user_counts": {
+    "free": 5000,
+    "paid": 1000,
+    "enterprise": 50
+  }
+}

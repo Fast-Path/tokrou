@@ -1,0 +1,13 @@
+{
+  "base_tokens": {
+    "visual": {"input": 1000, "output": 500},
+    "code": {"input": 800, "output": 2000},
+    "research": {"input": 500, "output": 1500}
+  },
+  "complexity_multipliers": {
+    "simple": 0.5,
+    "moderate": 1.0,
+    "complex": 2.5
+  },
+  "delegation_overhead": 1.5
+}
